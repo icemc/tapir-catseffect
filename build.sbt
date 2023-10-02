@@ -103,7 +103,7 @@ lazy val buildInfo = Seq(
 
 lazy val commonSettings = Seq(
   organization := "me.abanda",
-  scalaVersion := "2.13.8",
+  scalaVersion := "2.13.12",
   libraryDependencies ++= commonDependencies
 )
 
