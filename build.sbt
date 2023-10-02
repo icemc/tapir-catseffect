@@ -97,13 +97,13 @@ lazy val buildInfo = Seq(
   buildInfoKeys += "version"   -> "0.0.1",
   buildInfoKeys += "gitCommit" -> git.gitHeadCommit.value.getOrElse("Not Set"),
   buildInfoKeys += "gitBranch" -> git.gitCurrentBranch.value,
-//  buildInfoOptions += BuildInfoOption.ToJson,
-//  buildInfoOptions += BuildInfoOption.BuildTime
+  buildInfoOptions += BuildInfoOption.ToJson,
+  buildInfoOptions += BuildInfoOption.ToMap
 )
 
 lazy val commonSettings = Seq(
   organization := "me.abanda",
-  scalaVersion := "2.13.12",
+  scalaVersion := "2.13.8",
   libraryDependencies ++= commonDependencies
 )
 
@@ -113,3 +113,4 @@ lazy val root = (project in file("."))
     libraryDependencies ++= dbDependencies ++ httpDependencies ++ jsonDependencies ++ apiDocsDependencies ++ monitoringDependencies ++ dbTestingStack ++ securityDependencies ++ emailDependencies ++ macwireDependencies
   )
   .settings(commonSettings, buildInfo)
+  .enablePlugins(BuildInfoPlugin)

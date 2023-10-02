@@ -2,6 +2,7 @@ package me.abanda.email.sender
 
 import cats.effect.IO
 import me.abanda.email.{EmailConfig, EmailData}
+import sttp.client3.SttpBackend
 
 trait EmailSender {
   def apply(email: EmailData): IO[Unit]

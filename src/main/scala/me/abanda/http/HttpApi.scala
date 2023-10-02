@@ -5,7 +5,6 @@ import me.abanda.infrastructure.CorrelationIdInterceptor
 import me.abanda.logging.FLogger
 import me.abanda.util.ServerEndpoints
 import com.typesafe.scalalogging.StrictLogging
-import me.abanda.infrastructure.CorrelationIdInterceptor
 import org.http4s.HttpRoutes
 import org.http4s.blaze.server.BlazeServerBuilder
 import sttp.tapir.{EndpointInput, emptyInput}
@@ -14,7 +13,6 @@ import sttp.tapir.server.http4s.{Http4sServerInterpreter, Http4sServerOptions}
 import sttp.tapir.server.interceptor.cors.CORSInterceptor
 import sttp.tapir.server.metrics.prometheus.PrometheusMetrics
 import sttp.tapir.server.model.ValuedEndpointOutput
-import sttp.tapir.static.ResourcesOptions
 import sttp.tapir.swagger.SwaggerUIOptions
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
 
@@ -60,7 +58,7 @@ class HttpApi(
     // creating the documentation using `mainEndpoints` without the /api/v1 context path; instead, a server will be added
     // with the appropriate suffix
     val docsEndpoints = SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = apiContextPath))
-      .fromServerEndpoints(mainEndpoints.toList, "Bootzooka", "1.0")
+      .fromServerEndpoints(mainEndpoints.toList, "REST API", "1.0")
 
     // for /api/v1 requests, first trying the API; then the docs
     val apiEndpoints =
@@ -68,16 +66,6 @@ class HttpApi(
 
     val allAdminEndpoints = (adminEndpoints ++ List(prometheusMetrics.metricsEndpoint)).map(_.prependSecurityIn("admin"))
 
-    // for all other requests, first trying getting existing webapp resource (html, js, css files), from the /webapp
-    // directory on the classpath; otherwise, returning index.html; this is needed to support paths in the frontend
-    // apps (e.g. /login) the frontend app will handle displaying appropriate error messages
-//    val webappEndpoints = List(
-//      resourcesGetServerEndpoint[IO](emptyInput: EndpointInput[Unit])(
-//        classOf[HttpApi].getClassLoader,
-//        "webapp",
-//        ResourcesOptions.default.defaultResource(List("index.html"))
-//      )
-//    )
     apiEndpoints.toList ++ allAdminEndpoints.toList
   }
 

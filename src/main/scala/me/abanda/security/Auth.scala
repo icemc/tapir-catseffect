@@ -8,7 +8,6 @@ import me.abanda.logging.FLogging
 import me.abanda.user.User
 import me.abanda.util._
 import com.softwaremill.tagging._
-import me.abanda.user.User
 import me.abanda.util.Clock
 
 import java.security.SecureRandom

@@ -3,6 +3,7 @@ package me.abanda.email.sender
 import cats.effect.IO
 import me.abanda.email.{EmailData, MailgunConfig}
 import me.abanda.logging.FLogging
+import sttp.client3.{SttpBackend, UriContext, basicRequest}
 
 /** Sends emails using the [[https://www.mailgun.com Mailgun]] service. The external http call is done using
   * [[sttp https://github.com/softwaremill/sttp]].

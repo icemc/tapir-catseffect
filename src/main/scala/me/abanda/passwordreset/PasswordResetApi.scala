@@ -6,7 +6,6 @@ import me.abanda.infrastructure.Json._
 import me.abanda.infrastructure.Doobie._
 import me.abanda.util.ServerEndpoints
 import cats.effect.IO
-import me.abanda.http.Http
 
 class PasswordResetApi(http: Http, passwordResetService: PasswordResetService, xa: Transactor[IO]) {
   import PasswordResetApi._

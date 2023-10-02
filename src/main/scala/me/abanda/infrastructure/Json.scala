@@ -2,7 +2,6 @@ package me.abanda.infrastructure
 
 import me.abanda.util.{Id, PasswordHash}
 import com.softwaremill.tagging.@@
-import me.abanda.util.PasswordHash
 
 import io.circe.generic.AutoDerivation
 import io.circe.{Decoder, Encoder, Printer}

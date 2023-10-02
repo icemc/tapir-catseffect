@@ -5,8 +5,6 @@ import me.abanda.logging.FLogging
 import me.abanda.user.User
 import me.abanda.util.{Clock, Id, IdGenerator}
 import com.softwaremill.tagging.@@
-import me.abanda.user.User
-import me.abanda.util.{Clock, IdGenerator}
 
 import java.time.Instant
 import java.time.temporal.ChronoUnit

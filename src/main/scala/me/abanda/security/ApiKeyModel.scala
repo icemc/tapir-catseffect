@@ -7,8 +7,6 @@ import me.abanda.infrastructure.Doobie._
 import me.abanda.user.User
 import me.abanda.util.Id
 import com.softwaremill.tagging.@@
-import me.abanda.infrastructure.Doobie
-import me.abanda.user.User
 
 class ApiKeyModel {
 

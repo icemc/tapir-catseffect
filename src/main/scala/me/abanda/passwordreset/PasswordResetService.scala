@@ -8,8 +8,6 @@ import me.abanda.logging.FLogging
 import me.abanda.security.Auth
 import me.abanda.user.{User, UserModel}
 import me.abanda.util._
-import me.abanda.security.Auth
-import me.abanda.user.{User, UserModel}
 import me.abanda.util.{Clock, IdGenerator}
 
 class PasswordResetService(

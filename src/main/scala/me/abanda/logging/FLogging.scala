@@ -2,7 +2,6 @@ package me.abanda.logging
 
 import me.abanda.infrastructure.CorrelationIdSource
 import com.typesafe.scalalogging.Logger
-import me.abanda.infrastructure.CorrelationIdSource
 import org.slf4j.{LoggerFactory, MDC}
 
 trait FLogging {

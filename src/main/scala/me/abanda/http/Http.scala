@@ -15,8 +15,6 @@ import sttp.tapir.generic.auto.SchemaDerivation
 import sttp.tapir.json.circe.TapirJsonCirce
 import sttp.tapir.{Codec, Endpoint, EndpointOutput, PublicEndpoint, Schema, SchemaType, Tapir}
 
-import io.circe.Printer
-
 /** Helper class for defining HTTP endpoints. Import the members of this class when defining an HTTP API using tapir. */
 class Http() extends Tapir with TapirJsonCirce with TapirSchemas with FLogging {
 

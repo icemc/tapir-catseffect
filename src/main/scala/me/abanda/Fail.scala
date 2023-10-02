@@ -1,6 +1,5 @@
 package me.abanda
 
-import me.abanda.http.Http
 
 /** Base class for all failures in the application. The failures are translated to HTTP API results in the
   * [[Http]] class.

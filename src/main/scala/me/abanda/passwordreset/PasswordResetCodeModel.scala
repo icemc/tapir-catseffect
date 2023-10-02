@@ -7,8 +7,6 @@ import me.abanda.user.User
 import com.softwaremill.tagging.@@
 import me.abanda.infrastructure.Doobie._
 import me.abanda.security.AuthTokenOps
-import me.abanda.security.AuthTokenOps
-import me.abanda.user.User
 
 class PasswordResetCodeModel {
 
