@@ -1,0 +1,26 @@
+package me.abanda.metrics
+
+import cats.effect.IO
+import me.abanda.http.Http
+import me.abanda.infrastructure.Json._
+import me.abanda.version.BuildInfo
+import me.abanda.http.Http
+import sttp.tapir.server.ServerEndpoint
+
+/** Defines an endpoint which exposes the current application version information.
+  */
+class VersionApi(http: Http) {
+  import VersionApi._
+  import http._
+
+  val versionEndpoint: ServerEndpoint[Any, IO] = baseEndpoint.get
+    .in("version")
+    .out(jsonBody[Version_OUT])
+    .serverLogic { _ =>
+      IO(Version_OUT(BuildInfo.lastCommitHash)).toOut
+    }
+}
+
+object VersionApi {
+  case class Version_OUT(buildSha: String)
+}
