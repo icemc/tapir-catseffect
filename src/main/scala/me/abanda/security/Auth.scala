@@ -21,7 +21,7 @@ class Auth[T](
 ) extends FLogging {
 
   // see https://hackernoon.com/hack-how-to-use-securerandom-with-kubernetes-and-docker-a375945a7b21
-  private val random = SecureRandom.getInstance("NativePRNGNonBlocking")
+  private val random = SecureRandom.getInstance("SHA1PRNG")
 
   /** Authenticates using the given authentication token. If the token is invalid, a failed [[IO]] is returned, with an instance of the
     * [[Fail]] class. Otherwise, the id of the authenticated user is given.
