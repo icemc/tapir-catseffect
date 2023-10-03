@@ -101,15 +101,31 @@ lazy val buildInfo = Seq(
   buildInfoOptions += BuildInfoOption.ToMap
 )
 
+lazy val compilerOptions = Seq(
+  "-unchecked",
+  "-deprecation",
+  "-encoding",
+  "utf8",
+  "-feature",
+  "-language:implicitConversions",
+  "-language:higherKinds",
+  "-language:existentials",
+  "-language:postfixOps",
+  "-Ymacro-annotations",
+  "-Ywarn-unused:imports"
+)
+
 lazy val commonSettings = Seq(
   organization := "me.abanda",
   scalaVersion := "2.13.12",
+  scalacOptions := compilerOptions,
   libraryDependencies ++= commonDependencies
 )
 
 lazy val root = (project in file("."))
   .settings(
     name := "http4s-macwire",
+    Compile / mainClass := Some("me.abanda.Main"),
     libraryDependencies ++= dbDependencies ++ httpDependencies ++ jsonDependencies ++ apiDocsDependencies ++ monitoringDependencies ++ dbTestingStack ++ securityDependencies ++ emailDependencies ++ macwireDependencies
   )
   .settings(commonSettings, buildInfo)
