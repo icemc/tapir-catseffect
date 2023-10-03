@@ -8,9 +8,8 @@ import sttp.tapir.server.ServerEndpoint
 
 /** Defines an endpoint which exposes the current application version information.
   */
-class VersionApi(http: Http) {
+class VersionApi extends Http {
   import VersionApi._
-  import http._
 
   val versionEndpoint: ServerEndpoint[Any, IO] = baseEndpoint.get
     .in("version")

@@ -1,6 +1,6 @@
 package me.abanda.infrastructure
 
-import me.abanda.util.{Id, PasswordHash}
+import me.abanda.util.Id
 import com.softwaremill.tagging.@@
 
 import io.circe.generic.AutoDerivation
@@ -10,9 +10,6 @@ import io.circe.{Decoder, Encoder, Printer}
   */
 object Json extends AutoDerivation {
   val noNullsPrinter: Printer = Printer.noSpaces.copy(dropNullValues = true)
-
-  implicit val passwordHashEncoder: Encoder[String @@ PasswordHash] =
-    Encoder.encodeString.asInstanceOf[Encoder[String @@ PasswordHash]]
 
   // can't define a generic encoder because of https://stackoverflow.com/questions/48174799/decoding-case-class-w-tagged-type
   implicit def taggedIdEncoder[U]: Encoder[Id @@ U] = Encoder.encodeString.asInstanceOf[Encoder[Id @@ U]]

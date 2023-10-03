@@ -6,7 +6,7 @@ import org.slf4j.{LoggerFactory, MDC}
 
 trait FLogging {
   private val delegate = Logger(LoggerFactory.getLogger(getClass.getName))
-  protected def logger: FLogger = new FLogger(delegate)
+  protected def flogger: FLogger = new FLogger(delegate)
 }
 
 class FLogger(delegate: Logger) {

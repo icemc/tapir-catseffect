@@ -25,9 +25,9 @@ trait TestDependencies extends BeforeAndAfterAll with TestEmbeddedPostgres {
       Dependencies
         .wire(
           config = TestConfig,
-          sttpBackend = Resource.pure(stub),
-          xa = Resource.pure(currentDb.xa),
-          clock = testClock,
+//          sttpBackend = Resource.pure(stub),
+//          xa = Resource.pure(currentDb.xa),
+//          clock = testClock,
           collectorRegistry = new CollectorRegistry()
         )
         .allocated

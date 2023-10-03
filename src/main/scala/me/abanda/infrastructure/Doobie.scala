@@ -1,7 +1,7 @@
 package me.abanda.infrastructure
 
 import cats.effect.kernel.Sync
-import me.abanda.util.{Id, PasswordHash}
+import me.abanda.util.Id
 import com.softwaremill.tagging._
 import com.typesafe.scalalogging.StrictLogging
 import doobie.util.log.{ExecFailure, LogEvent, ProcessingFailure, Success}
@@ -29,9 +29,6 @@ object Doobie
 
   implicit def taggedStringMeta[U]: Meta[String @@ U] =
     implicitly[Meta[String]].asInstanceOf[Meta[String @@ U]]
-
-  implicit val passwordHashMeta: Meta[String @@ PasswordHash] =
-    implicitly[Meta[String]].asInstanceOf[Meta[String @@ PasswordHash]]
 
   private val SlowThreshold = 200.millis
 

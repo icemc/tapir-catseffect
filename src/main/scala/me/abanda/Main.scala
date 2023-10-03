@@ -49,12 +49,11 @@ object Main extends ResourceApp.Forever with StrictLogging {
   override def run(list: List[String]): Resource[IO, Unit] = for {
     deps <- Dependencies.wire(
       config,
-      sttpBackend,
-      xa,
-      DefaultClock,
+//      sttpBackend,
+//      xa,
+//      DefaultClock,
       CollectorRegistry.defaultRegistry
     )
-    _ <- deps.emailService.startProcesses().background
     _ <- deps.httpApi.resource
   } yield ()
 }

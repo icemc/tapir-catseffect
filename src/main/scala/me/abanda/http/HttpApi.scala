@@ -25,19 +25,18 @@ import sttp.tapir.swagger.bundle.SwaggerInterpreter
   *   - `/` - serving frontend resources
   */
 class HttpApi(
-    http: Http,
-    mainEndpoints: ServerEndpoints,
-    adminEndpoints: ServerEndpoints,
+    mainEndpoints: List[ServerEndpoint[Any, IO]],
+    adminEndpoints: List[ServerEndpoint[Any, IO]],
     prometheusMetrics: PrometheusMetrics[IO],
     config: HttpConfig
-) extends StrictLogging {
+) extends StrictLogging with Http {
   private val apiContextPath = List("api", "v1")
 
   val serverOptions: Http4sServerOptions[IO] = Http4sServerOptions
     .customiseInterceptors[IO]
     .prependInterceptor(CorrelationIdInterceptor)
     // all errors are formatted as json, and there are no other additional http4s routes
-    .defaultHandlers(msg => ValuedEndpointOutput(http.jsonErrorOutOutput, Error_OUT(msg)), notFoundWhenRejected = true)
+    .defaultHandlers(msg => ValuedEndpointOutput(jsonErrorOutOutput, Error_OUT(msg)), notFoundWhenRejected = true)
     .serverLog {
       // using a context-aware logger for http logging
       val flogger = new FLogger(logger)
@@ -66,7 +65,7 @@ class HttpApi(
 
     val allAdminEndpoints = (adminEndpoints ++ List(prometheusMetrics.metricsEndpoint)).map(_.prependSecurityIn("admin"))
 
-    apiEndpoints.toList ++ allAdminEndpoints.toList
+    apiEndpoints ++ allAdminEndpoints
   }
 
   /** The resource describing the HTTP server; binds when the resource is allocated. */
